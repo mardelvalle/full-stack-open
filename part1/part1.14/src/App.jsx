@@ -13,15 +13,27 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const votes = Array(8).fill(0)
+  const [copyVotes, setCopyVotes] = useState([...votes])
+
 
   const numberGenerator = () => {
-    console.log(selected)
-    setSelected(Math.floor(Math.random() * 8))
+    const randomNumber = Math.floor(Math.random() * 8)
+
+    setSelected(randomNumber)
+  }
+
+  const voteIncrease = () => {
+    const newVotes = [...copyVotes]
+    newVotes[selected] += 1
+    setCopyVotes(newVotes)
   }
 
   return (
     <div>
       <p>{anecdotes[selected]}</p>
+      <p>{`has ${copyVotes[selected]} votes`}</p>
+      <button onClick={() => voteIncrease()}>vote</button>
       <button onClick={() => numberGenerator()}>next anecdotes</button>
     </div>
   )
