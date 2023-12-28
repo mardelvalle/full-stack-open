@@ -1,31 +1,25 @@
-import Content from './Content'
-import Header from './Header'
-import Total from './Total'
+import { useState } from 'react'
 
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
+  const increasePoints = (option, setOption) => {
+      return setOption(option + 1)
   }
 
   return (
     <div>
-      <Header course={course}/>
-      <Content parts={course.parts}/>
-      <Total parts={course.parts}/>
+      <h1>Give Feedback</h1>
+      <button onClick={() => increasePoints(good, setGood)}>good</button>
+      <button onClick={() => increasePoints(neutral, setNeutral)}>neutral</button>
+      <button onClick={() => increasePoints(bad, setBad)}>bad</button>
+      <h2>Statistics</h2>
+      <p>{`good ${good}`}</p>
+      <p>{`neutral ${neutral}`}</p>
+      <p>{`bad ${bad}`}</p>
     </div>
   )
 }
