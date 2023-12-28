@@ -15,6 +15,7 @@ const App = () => {
   const [selected, setSelected] = useState(0)
   const votes = Array(8).fill(0)
   const [copyVotes, setCopyVotes] = useState([...votes])
+  const [maxValueIndex, setMaxValueIndex] = useState(0)
 
 
   const numberGenerator = () => {
@@ -24,17 +25,26 @@ const App = () => {
   }
 
   const voteIncrease = () => {
-    const newVotes = [...copyVotes]
-    newVotes[selected] += 1
-    setCopyVotes(newVotes)
+
+    setCopyVotes((prevVotes) => {
+      const newVotes = [...prevVotes]
+      newVotes[selected] += 1
+      const maxIndex = newVotes.indexOf(Math.max(...newVotes))
+      setMaxValueIndex(maxIndex)
+      
+      return newVotes
+    })
   }
 
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
-      <p>{`has ${copyVotes[selected]} votes`}</p>
-      <button onClick={() => voteIncrease()}>vote</button>
-      <button onClick={() => numberGenerator()}>next anecdotes</button>
+      <h1>Anecdote of the day</h1>
+        <p>{anecdotes[selected]}</p>
+        <p>{`has ${copyVotes[selected]} votes`}</p>
+        <button onClick={() => voteIncrease()}>vote</button>
+        <button onClick={() => numberGenerator()}>next anecdotes</button>
+      <h2>Anecdote with most votes</h2>
+      <p>{anecdotes[maxValueIndex]}</p>
     </div>
   )
 }
