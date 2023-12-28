@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from './Button'
 import StatisticLine from './StatisticLine'
 
 const App = () => {
@@ -8,18 +9,12 @@ const App = () => {
   const [bad, setBad] = useState(0)
   const [total, setTotal] = useState(0)
 
-
-  const increasePoints = (option, setOption) => {
-      setOption(option + 1)
-      setTotal(total + 1)
-  }
-
   return (
     <div>
       <h1>Give Feedback</h1>
-      <button onClick={() => increasePoints(good, setGood)}>good</button>
-      <button onClick={() => increasePoints(neutral, setNeutral)}>neutral</button>
-      <button onClick={() => increasePoints(bad, setBad)}>bad</button>
+      <Button total={total} setTotal={setTotal} option={good} setOption={setGood} text="good" />
+      <Button total={total} setTotal={setTotal} option={neutral} setOption={setNeutral} text="neutral" />
+      <Button total={total} setTotal={setTotal} option={bad} setOption={setBad} text="bad" />
       <h2>Statistics</h2>
       { total > 0 ? (
         <table>
