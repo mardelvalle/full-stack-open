@@ -22,14 +22,14 @@ const App = () => {
       <button onClick={() => increasePoints(bad, setBad)}>bad</button>
       <h2>Statistics</h2>
       { total > 0 ? (
-        <>
+        <table>
           <StatisticLine text="good" stat={good} />
           <StatisticLine text="bad" stat={bad} />
           <StatisticLine text="neutral" stat={neutral} />
           <StatisticLine text="average" stat={(good - bad)/total} />
           <StatisticLine text="total" stat={total} />
           <StatisticLine text="percent positive" stat={good/total} />
-        </>
+        </table>
       ) : <p>No feedback given</p>
       }
     </div>

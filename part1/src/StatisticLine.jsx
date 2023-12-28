@@ -1,7 +1,10 @@
 const StatisticLine = ({text, stat}) => {
 
   return (
-    <p>{`${text} ${stat}`}</p>
+    <tr>
+      <td>{text}</td>
+      <td>{stat}</td>
+    </tr>
   )
 }
 
