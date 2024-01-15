@@ -1,5 +1,5 @@
 import axios from 'axios'
-import updatePerson from './services/persons'
+import personService from './services/personService'
 
 const Form = ({newFilter, newFilteredList, setNewFilteredList, newName, newNumber, persons, setNewName, setNewNumber, setPersons}) => {
   const handleNameChange = (event) => {
@@ -26,7 +26,7 @@ const Form = ({newFilter, newFilteredList, setNewFilteredList, newName, newNumbe
       if(newFilter && newName && newName.toLowerCase().includes(newFilter.toLowerCase())) {
         setNewFilteredList(newFilteredList.concat(personObject))
       }
-     updatePerson(personObject)
+     personService.addPerson(personObject)
     }
   }
 
